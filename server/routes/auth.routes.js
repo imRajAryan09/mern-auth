@@ -5,6 +5,7 @@ const {
 	forgotPassword,
 	resetPassword,
 	googleLogin,
+	githubLogin,
 } = require("../controllers/auth.controller");
 const { runValidation } = require("../middlewares/validators");
 const {
@@ -40,4 +41,6 @@ router.put(
 );
 
 router.post("/login/google", googleLogin);
+router.post("/login/github", githubLogin);
+
 module.exports = router;

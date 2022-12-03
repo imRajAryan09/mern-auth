@@ -256,3 +256,51 @@ exports.googleLogin = async (req, res) => {
 			}
 		});
 };
+
+exports.githubLogin = async (req, res) => {
+	const { code } = req.body;
+	const data = {
+		client_id: process.env.GITHUB_CLIENT_ID,
+		client_secret: process.env.GITHUB_CLIENT_SECRET,
+		code,
+	};
+	const response = await axios.post(`	`, data);
+	const { access_token, token_type } = response.data;
+	const userResponse = await axios.get(`	`, {
+		headers: {
+			Authorization: `${token_type} ${access_token}`,
+		},
+	});
+	const { login, email, name } = userResponse.data;
+	User.findOne({ email }).exec((err, user) => {
+		if (user) {
+			const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
+				expiresIn: "7d",
+			});
+			const { _id, email, name, role } = user;
+			return res.json({
+				token,
+				user: { _id, email, name, role },
+			});
+		} else {
+			let password = email + process.env.JWT_SECRET;
+			user = new User({ name, email, password });
+			user.save((err, data) => {
+				if (err) {
+					console.log("ERROR GITHUB LOGIN ON USER SAVE", err);
+					return res.status(400).json({
+						error: "User signup failed with github",
+					});
+				}
+				const token = jwt.sign({ _id: data._id }, process.env.JWT_SECRET, {
+					expiresIn: "7d",
+				});
+				const { _id, email, name, role } = data;
+				return res.json({
+					token,
+					user: { _id, email, name, role },
+				});
+			});
+		}
+	});
+};
