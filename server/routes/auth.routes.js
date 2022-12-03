@@ -1,13 +1,17 @@
 const {
 	registerUser,
 	activateUser,
-	signinUser,
+	signInUser,
+	forgotPassword,
+	resetPassword,
 } = require("../controllers/auth.controller");
-const { runValidation } = require("../validators");
+const { runValidation } = require("../middlewares/validators");
 const {
 	userRegisterValidator,
 	userSigninValidator,
-} = require("../validators/auth.validator");
+	forgotPasswordValidator,
+	resetPasswordValidator,
+} = require("../middlewares/validators/auth.validator");
 const router = require("express").Router();
 
 // import validators
@@ -20,6 +24,18 @@ router.get("/test", (req, res) => {
 
 router.post("/register", userRegisterValidator, runValidation, registerUser);
 router.post("/activation", activateUser);
-router.post("/login", userSigninValidator, runValidation, signinUser);
+router.post("/login", userSigninValidator, runValidation, signInUser);
+router.put(
+	"/password/forget",
+	forgotPasswordValidator,
+	runValidation,
+	forgotPassword
+);
+router.put(
+	"/password/reset",
+	resetPasswordValidator,
+	runValidation,
+	resetPassword
+);
 
 module.exports = router;

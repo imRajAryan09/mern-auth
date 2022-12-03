@@ -3,7 +3,7 @@ const {
 	updateUser,
 	getUserById,
 } = require("../controllers/user.controller");
-const { signInCheck, adminCheck } = require("../middlewares/sign");
+const { signInCheck, adminCheck } = require("../middlewares/checkPriviledge.middleware");
 
 const router = require("express").Router();
 

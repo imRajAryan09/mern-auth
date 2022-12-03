@@ -1,5 +1,6 @@
 const { expressjwt: jwt } = require("express-jwt");
 const User = require("../models/User");
+
 exports.signInCheck = jwt({
 	secret: process.env.JWT_SECRET, // req.user
 	algorithms: ["HS256"],
