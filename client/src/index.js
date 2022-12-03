@@ -4,13 +4,15 @@ import "./index.css";
 import App from "./App";
 import "react-toastify/dist/ReactToastify.min.css";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import Register from "./screens/Register";
-import Login from "./screens/Login";
-import Activate from "./screens/Activate";
+import {
+	Activate,
+	Admin,
+	Login,
+	Private,
+	Register,
+} from "./screens/exportScreens";
+import AdminRoute from "./routes/AdminRoute";
 import PrivateRoute from "./routes/PrivateRoute";
-import Private from "./screens/Private";
-import AdminRoutes from "./routes/AdminRoute";
-import Admin from "./screens/Admin";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -31,9 +33,9 @@ root.render(
 			<Route
 				path='/admin'
 				element={
-					<AdminRoutes>
+					<AdminRoute>
 						<Admin />
-					</AdminRoutes>
+					</AdminRoute>
 				}
 			/>
 			<Route path='*' element={<Navigate to='/' />} />

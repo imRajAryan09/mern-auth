@@ -27,6 +27,12 @@ const useStyles = makeStyles(() => ({
 function App() {
 	const navigate = useNavigate();
 	const classes = useStyles();
+	const handlePrivilege = () => {
+		isAuth() && isAuth().role === "admin"
+			? navigate("/admin")
+			: navigate("/private");
+	};
+
 	return (
 		<Layout>
 			<div className={classes.App}>
@@ -61,7 +67,7 @@ function App() {
 										marginTop: "1.5rem",
 										fontSize: "1.2rem",
 									}}
-									onClick={() => navigate("/private")}
+									onClick={handlePrivilege}
 								>
 									Update Profile
 								</Button>
