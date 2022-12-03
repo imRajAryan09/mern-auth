@@ -123,7 +123,7 @@ const Login = () => {
 							textDecoration: "underline",
 							cursor: "pointer",
 						}}
-						onClick={() => null}
+						onClick={() => navigate("/auth/password/forget")}
 					>
 						Forgot Password?
 					</Typography>

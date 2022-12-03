@@ -1,4 +1,4 @@
-import { Button, Card, makeStyles, Typography } from "@material-ui/core";
+import { Button, Card, FormGroup, makeStyles, Typography } from "@material-ui/core";
 import { useParams } from "react-router-dom";
 import { useJwt } from "react-jwt";
 import axios from "axios";
@@ -31,15 +31,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Activate = () => {
-	let name = "";
+	let name = "User";
 	const { token } = useParams();
 	const { decodedToken } = useJwt(token);
 	if (decodedToken) {
 		name = decodedToken.name;
-	} else {
-		name = "User";
 	}
-	console.log(decodedToken);
+	// console.log(decodedToken);
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		axios({
@@ -59,20 +57,22 @@ const Activate = () => {
 	const classes = useStyles();
 	return (
 		<Layout>
+			<ToastContainer />
 			<Card className={classes.card}>
-				<ToastContainer />
-				<Typography variant='h5' className={classes.heading}>
-					{`Hey ${name}, Ready to activate your account !`}
-				</Typography>
-				<Button
-					variant='contained'
-					color='primary'
-					size='large'
-					className={classes.registerBtn}
-					onClick={handleSubmit}
-				>
-					Activate
-				</Button>
+				<FormGroup>
+					<Typography variant='h5' className={classes.heading}>
+						{`Hey ${name}, Ready to activate your account !`}
+					</Typography>
+					<Button
+						variant='contained'
+						color='primary'
+						size='large'
+						className={classes.registerBtn}
+						onClick={handleSubmit}
+					>
+						Activate
+					</Button>
+				</FormGroup>
 			</Card>
 		</Layout>
 	);

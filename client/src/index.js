@@ -7,9 +7,11 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import {
 	Activate,
 	Admin,
+	ForgetPassword,
 	Login,
 	Private,
 	Register,
+	ResetPassword,
 } from "./screens/exportScreens";
 import AdminRoute from "./routes/AdminRoute";
 import PrivateRoute from "./routes/PrivateRoute";
@@ -38,6 +40,8 @@ root.render(
 					</AdminRoute>
 				}
 			/>
+			<Route path='/auth/password/forget' element={<ForgetPassword />} />
+			<Route path='/auth/password/reset/:token' element={<ResetPassword />} />
 			<Route path='*' element={<Navigate to='/' />} />
 		</Routes>
 	</BrowserRouter>

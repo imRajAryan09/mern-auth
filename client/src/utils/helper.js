@@ -60,7 +60,7 @@ export const isAuth = () => {
 				return false;
 			}
 		} else {
-			console.log("COOKIE CHECKED", cookieChecked);
+			// console.log("COOKIE CHECKED", cookieChecked);
 		}
 	}
 };
