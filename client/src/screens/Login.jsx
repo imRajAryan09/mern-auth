@@ -12,6 +12,9 @@ import { toast, ToastContainer } from "react-toastify";
 import { authenticate, isAuth } from "../utils/helper";
 import { useNavigate } from "react-router-dom";
 import Layout from "../components/Layout";
+import GoogleAuth from "./GoogleAuth";
+import { Divider } from "@mui/material";
+import GithubAuth from "./GithubAuth";
 const useStyles = makeStyles((theme) => ({
 	card: {
 		display: "flex",
@@ -78,6 +81,12 @@ const Login = () => {
 				toast.error(error.response.data.error);
 			});
 	};
+	const informParent = (response) => {
+		authenticate(response, () => {
+			toast.success("Login Success");
+			navigate("/");
+		});
+	};
 	const classes = useStyles();
 	return (
 		<Layout>
@@ -92,6 +101,9 @@ const Login = () => {
 					<Typography variant='h4' className={classes.heading}>
 						Sign In
 					</Typography>
+					<GoogleAuth informParent={informParent} />
+					<GithubAuth />
+					<Divider>OR</Divider>
 					<TextField
 						label='Email'
 						variant='outlined'

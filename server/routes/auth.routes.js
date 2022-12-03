@@ -4,6 +4,7 @@ const {
 	signInUser,
 	forgotPassword,
 	resetPassword,
+	googleLogin,
 } = require("../controllers/auth.controller");
 const { runValidation } = require("../middlewares/validators");
 const {
@@ -38,4 +39,5 @@ router.put(
 	resetPassword
 );
 
+router.post("/login/google", googleLogin);
 module.exports = router;
