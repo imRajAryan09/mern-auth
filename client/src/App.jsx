@@ -1,8 +1,9 @@
 import { Box, makeStyles } from "@material-ui/core";
 import { Button, Stack, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import Layout from "./Layout";
+import Layout from "./components/Layout";
 import { isAuth, signOut } from "./utils/helper";
+
 const useStyles = makeStyles(() => ({
 	App: {
 		display: "flex",
@@ -21,9 +22,7 @@ const useStyles = makeStyles(() => ({
 		padding: "2.5rem",
 		backdropFilter: "blur(10px)",
 	},
-	btn:{
-
-	}
+	btn: {},
 }));
 function App() {
 	const navigate = useNavigate();
@@ -52,23 +51,38 @@ function App() {
 								You have been logged in by the reverence of the almighty God
 								Jesus Christ our lord and saviour
 							</Typography>
-							<Button
-								variant='outlined'
-								style={{
-									color: "#000",
-									border: "2px solid #000",
-									borderRadius: "0",
-									marginTop: "1.5rem",
-									fontSize: "1.2rem",
-								}}
-								onClick={() => {
-									signOut(() => {
-										navigate("/");
-									});
-								}}
-							>
-								Logout
-							</Button>
+							<Stack spacing={10} direction='row'>
+								<Button
+									variant='outlined'
+									style={{
+										color: "#000",
+										border: "2px solid #000",
+										borderRadius: "0",
+										marginTop: "1.5rem",
+										fontSize: "1.2rem",
+									}}
+									onClick={() => navigate("/private")}
+								>
+									Update Profile
+								</Button>
+								<Button
+									variant='outlined'
+									style={{
+										color: "#000",
+										border: "2px solid #000",
+										borderRadius: "0",
+										marginTop: "1.5rem",
+										fontSize: "1.2rem",
+									}}
+									onClick={() => {
+										signOut(() => {
+											navigate("/");
+										});
+									}}
+								>
+									Logout
+								</Button>
+							</Stack>
 						</>
 					) : (
 						<>

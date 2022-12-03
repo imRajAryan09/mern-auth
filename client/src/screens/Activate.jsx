@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useJwt } from "react-jwt";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
+import Layout from "../components/Layout";
 
 const useStyles = makeStyles((theme) => ({
 	card: {
@@ -43,7 +44,7 @@ const Activate = () => {
 		event.preventDefault();
 		axios({
 			method: "POST",
-			url: `${process.env.REACT_APP_API}/activation`,
+			url: `${process.env.REACT_APP_API}/auth/activation`,
 			data: { token },
 		})
 			.then((response) => {
@@ -57,21 +58,23 @@ const Activate = () => {
 	};
 	const classes = useStyles();
 	return (
-		<Card className={classes.card}>
-			<ToastContainer />
-			<Typography variant='h5' className={classes.heading}>
-				{`Hey ${name}, Ready to activate your account !`}
-			</Typography>
-			<Button
-				variant='contained'
-				color='primary'
-				size='large'
-				className={classes.registerBtn}
-				onClick={handleSubmit}
-			>
-				Activate
-			</Button>
-		</Card>
+		<Layout>
+			<Card className={classes.card}>
+				<ToastContainer />
+				<Typography variant='h5' className={classes.heading}>
+					{`Hey ${name}, Ready to activate your account !`}
+				</Typography>
+				<Button
+					variant='contained'
+					color='primary'
+					size='large'
+					className={classes.registerBtn}
+					onClick={handleSubmit}
+				>
+					Activate
+				</Button>
+			</Card>
+		</Layout>
 	);
 };
 

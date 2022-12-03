@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { authenticate, isAuth } from "../utils/helper";
 import { useNavigate } from "react-router-dom";
-import Layout from "../Layout";
+import Layout from "../components/Layout";
 const useStyles = makeStyles((theme) => ({
 	card: {
 		display: "flex",
@@ -47,10 +47,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Login = () => {
 	const [formData, setFormData] = useState({
-		name: "",
 		email: "",
 		password: "",
-		confirmPassword: "",
 	});
 	const navigate = useNavigate();
 	const { email, password } = formData;
@@ -61,7 +59,7 @@ const Login = () => {
 		event.preventDefault();
 		axios({
 			method: "POST",
-			url: `${process.env.REACT_APP_API}/login`,
+			url: `${process.env.REACT_APP_API}/auth/login`,
 			data: { email, password },
 		})
 			.then((response) => {
@@ -69,10 +67,8 @@ const Login = () => {
 				authenticate(response, () => {
 					setFormData({
 						...formData,
-						name: "",
 						email: "",
 						password: "",
-						confirmPassword: "",
 					});
 					toast.success(response.data.message);
 				});
@@ -121,7 +117,16 @@ const Login = () => {
 					>
 						Login
 					</Button>
-					<Typography textAlign='center'>Forgot Password?</Typography>
+					<Typography
+						style={{
+							textAlign: "center",
+							textDecoration: "underline",
+							cursor: "pointer",
+						}}
+						onClick={() => null}
+					>
+						Forgot Password?
+					</Typography>
 				</FormGroup>
 			</Card>
 		</Layout>

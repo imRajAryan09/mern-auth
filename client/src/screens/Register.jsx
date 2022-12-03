@@ -9,7 +9,7 @@ import {
 import axios from "axios";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import Layout from "../Layout";
+import Layout from "../components/Layout";
 
 const useStyles = makeStyles((theme) => ({
 	card: {
@@ -59,7 +59,7 @@ const Register = () => {
 		event.preventDefault();
 		axios({
 			method: "POST",
-			url: `${process.env.REACT_APP_API}/register`,
+			url: `${process.env.REACT_APP_API}/auth/register`,
 			data: { name, email, password },
 		})
 			.then((response) => {

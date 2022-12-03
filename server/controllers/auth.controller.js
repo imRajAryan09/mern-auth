@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const sgMail = require("@sendgrid/mail");
 const { emailHtml } = require("../utils/email");
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+const expressJwt = require("express-jwt");
 
 exports.registerUser = async (req, res) => {
 	const { name, email, password } = req.body;

@@ -59,6 +59,8 @@ export const isAuth = () => {
 			} else {
 				return false;
 			}
+		} else {
+			console.log("COOKIE CHECKED", cookieChecked);
 		}
 	}
 };
@@ -66,5 +68,16 @@ export const isAuth = () => {
 export const signOut = (next) => {
 	removeCookie("token");
 	removeLocalStorage("user");
+	next();
+};
+
+export const updateUser = (response, next) => {
+	console.log("UPDATE USER IN LOCALSTORAGE HELPERS", response);
+	if (typeof window !== "undefined") {
+		let auth = JSON.parse(localStorage.getItem("user"));
+		auth = response.data;
+		console.log("UPDATE USER IN LOCALSTORAGE HELPERS", auth);
+		localStorage.setItem("user", JSON.stringify(auth));
+	}
 	next();
 };

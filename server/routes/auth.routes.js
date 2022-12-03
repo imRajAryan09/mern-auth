@@ -2,7 +2,7 @@ const {
 	registerUser,
 	activateUser,
 	signinUser,
-} = require("../controllers/register.controller");
+} = require("../controllers/auth.controller");
 const { runValidation } = require("../validators");
 const {
 	userRegisterValidator,
