@@ -113,7 +113,6 @@ exports.signInUser = async (req, res) => {
 
 exports.forgotPassword = async (req, res) => {
 	const { email } = req.body;
-
 	User.findOne({ email }).exec((err, user) => {
 		if (err || !user) {
 			return res.status(400).json({
