@@ -12,7 +12,7 @@ const authRoutes = require("./routes/auth.routes");
 const userRoutes = require("./routes/user.routes");
 
 // app middlewares
-app.use(morgan("dev"));
+app.use(morgan());
 app.use(bodyParser.json());
 app.use(cors());
 
