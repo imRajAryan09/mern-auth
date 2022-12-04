@@ -2,10 +2,10 @@ import {
 	Button,
 	Card,
 	FormGroup,
-	makeStyles,
 	TextField,
 	Typography,
-} from "@material-ui/core";
+} from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import axios from "axios";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";

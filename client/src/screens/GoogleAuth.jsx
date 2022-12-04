@@ -1,4 +1,4 @@
-import { Box, Button } from "@material-ui/core";
+import { Box, Button } from "@mui/material";
 import { gapi } from "gapi-script";
 import { useEffect } from "react";
 import { GoogleLogin } from "react-google-login";

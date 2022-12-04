@@ -1,5 +1,5 @@
-import { Box, Button } from "@material-ui/core";
 import GitHubIcon from "@mui/icons-material/GitHub";
+import { Box, Button } from "@mui/material";
 
 const GithubAuth = () => {	
 	return (

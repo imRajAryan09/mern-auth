@@ -2,16 +2,17 @@ import {
 	Button,
 	Card,
 	FormGroup,
-	makeStyles,
 	TextField,
 	Typography,
-} from "@material-ui/core";
+} from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import Layout from "../components/Layout";
 import { getCookie, isAuth, updateUser } from "../utils/helper";
+
 const useStyles = makeStyles((theme) => ({
 	card: {
 		display: "flex",

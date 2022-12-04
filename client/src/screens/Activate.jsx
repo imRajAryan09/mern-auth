@@ -1,9 +1,10 @@
-import { Button, Card, FormGroup, makeStyles, Typography } from "@material-ui/core";
 import { useParams } from "react-router-dom";
 import { useJwt } from "react-jwt";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import Layout from "../components/Layout";
+import { Button, Card, FormGroup, Typography } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
 	card: {

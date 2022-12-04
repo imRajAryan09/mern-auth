@@ -1,9 +1,8 @@
-import { Box, makeStyles } from "@material-ui/core";
-import { Button, Stack, Typography } from "@mui/material";
+import { Box, Button, Stack, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Layout from "./components/Layout";
 import { isAuth, signOut } from "./utils/helper";
-
+import { makeStyles } from '@mui/styles'
 const useStyles = makeStyles(() => ({
 	App: {
 		display: "flex",
