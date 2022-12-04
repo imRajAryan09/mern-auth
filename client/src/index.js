@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import "react-toastify/dist/ReactToastify.min.css";
@@ -16,8 +16,7 @@ import {
 import AdminRoute from "./routes/AdminRoute";
 import PrivateRoute from "./routes/PrivateRoute";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
+ReactDOM.render(
 	<BrowserRouter>
 		<Routes>
 			<Route exact path='/' element={<App />} />
@@ -44,5 +43,6 @@ root.render(
 			<Route path='/auth/password/reset/:token' element={<ResetPassword />} />
 			<Route path='*' element={<Navigate to='/' />} />
 		</Routes>
-	</BrowserRouter>
+	</BrowserRouter>,
+	document.getElementById("root")
 );
