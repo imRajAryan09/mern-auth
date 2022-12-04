@@ -2,36 +2,45 @@ import { Box, Button, Stack, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Layout from "./components/Layout";
 import { isAuth, signOut } from "./utils/helper";
-import { makeStyles } from '@mui/styles'
-const useStyles = makeStyles(() => ({
-	App: {
-		display: "flex",
-		justifyContent: "center",
-		alignItems: "center",
-		height: "100vh",
-		width: "100vw",
-	},
-	card: {
-		backgroundColor: "rgba(255, 255, 255, 0.2)",
-		display: "flex",
-		justifyContent: "center",
-		alignItems: "center",
-		flexDirection: "column",
-		gap: "20px",
-		padding: "2.5rem",
-		backdropFilter: "blur(10px)",
-	},
-	btn: {},
-}));
+import { makeStyles } from "tss-react/mui";
+
+const useStyles = makeStyles()(() => {
+	return {
+		App: {
+			display: "flex",
+			justifyContent: "center",
+			alignItems: "center",
+			height: "100vh",
+			width: "100vw",
+		},
+		card: {
+			backgroundColor: "rgba(255, 255, 255, 0.2)",
+			display: "flex",
+			justifyContent: "center",
+			alignItems: "center",
+			flexDirection: "column",
+			gap: "20px",
+			padding: "2.5rem",
+			backdropFilter: "blur(10px)",
+		},
+		btn: {
+			color: "#000",
+			border: "2px solid #000",
+			borderRadius: "0",
+			marginTop: "1.5rem",
+			fontSize: "1.2rem",
+		},
+	};
+});
+
 function App() {
 	const navigate = useNavigate();
-	const classes = useStyles();
+	const { classes } = useStyles();
 	const handlePrivilege = () => {
 		isAuth() && isAuth().role === "admin"
 			? navigate("/admin")
 			: navigate("/private");
 	};
-
 	return (
 		<Layout>
 			<div className={classes.App}>

@@ -4,32 +4,33 @@ import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import Layout from "../components/Layout";
 import { Button, Card, FormGroup, Typography } from "@mui/material";
-import { makeStyles } from "@mui/styles";
-
-const useStyles = makeStyles((theme) => ({
-	card: {
-		display: "flex",
-		flexDirection: "column",
-		justifyContent: "center",
-		alignItems: "center",
-		padding: theme.spacing(3),
-		"& .MuiButtonBase-root": {
-			margin: theme.spacing(2),
+import { makeStyles } from "tss-react/mui";
+const useStyles = makeStyles()(() => {
+	return {
+		card: {
+			display: "flex",
+			flexDirection: "column",
+			justifyContent: "center",
+			alignItems: "center",
+			padding: "24px",
+			"& .MuiButtonBase-root": {
+				margin: "16px",
+			},
 		},
-	},
-	heading: {
-		textAlign: "center",
-		padding: "10px",
-		fontWeight: "bold",
-		color: "#24140f",
-	},
-	registerBtn: {
-		backgroundColor: "#902a1a",
-		"&:hover": {
-			backgroundColor: "#81413c",
+		heading: {
+			textAlign: "center",
+			padding: "10px",
+			fontWeight: "bold",
+			color: "#24140f",
 		},
-	},
-}));
+		registerBtn: {
+			backgroundColor: "#902a1a",
+			"&:hover": {
+				backgroundColor: "#81413c",
+			},
+		},
+	};
+});
 
 const Activate = () => {
 	let name = "User";
@@ -55,7 +56,7 @@ const Activate = () => {
 				toast.error(error.response.data.error);
 			});
 	};
-	const classes = useStyles();
+	const { classes } = useStyles();
 	return (
 		<Layout>
 			<ToastContainer />
