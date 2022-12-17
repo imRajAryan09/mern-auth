@@ -2,6 +2,13 @@ import { makeStyles } from "tss-react/mui";
 
 const useStyles = makeStyles()(() => {
 	return {
+		container: {
+			display: "flex",
+			flexDirection: "column",
+			justifyContent: "center",
+			alignItems: "center",
+			height: "100vh",
+		},
 		card: {
 			display: "flex",
 			flexDirection: "column",

@@ -1,17 +1,5 @@
 import { Box } from "@mui/material";
-import { makeStyles } from "tss-react/mui";
-
-const useStyles = makeStyles()(() => {
-	return {
-		container: {
-			display: "flex",
-			flexDirection: "column",
-			justifyContent: "center",
-			alignItems: "center",
-			height: "100vh",
-		},
-	};
-});
+import useStyles from "../style/style";
 
 const Layout = ({ children }) => {
 	const { classes } = useStyles();
