@@ -29,6 +29,7 @@ const useStyles = makeStyles()(() => {
 			borderRadius: "0",
 			marginTop: "1.5rem",
 			fontSize: "1.2rem",
+			textAlign: "center",
 		},
 	};
 });
