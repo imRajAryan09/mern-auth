@@ -34,6 +34,14 @@ const useStyles = makeStyles()(() => {
 			"& .MuiButtonBase-root": {
 				margin: "16px",
 			},
+			"& label.Mui-focused": {
+				color: "#000",
+			},
+			"& .MuiOutlinedInput-root": {
+				"&.Mui-focused fieldset": {
+					borderColor: "#902a1a",
+				},
+			},
 		},
 		heading: {
 			textAlign: "center",

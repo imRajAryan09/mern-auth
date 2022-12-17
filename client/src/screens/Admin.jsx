@@ -26,6 +26,14 @@ const useStyles = makeStyles()(() => {
 			"& .MuiButtonBase-root": {
 				margin: "16px",
 			},
+			"& label.Mui-focused": {
+				color: "#000",
+			},
+			"& .MuiOutlinedInput-root": {
+				"&.Mui-focused fieldset": {
+					borderColor: "#902a1a",
+				},
+			},
 		},
 		heading: {
 			textAlign: "center",
@@ -52,7 +60,7 @@ const Admin = () => {
 	const navigate = useNavigate();
 	const loadProfile = () => {
 		const token = getCookie("token");
-		console.log(isAuth());
+		// console.log(isAuth());
 		axios({
 			method: "GET",
 			url: `${process.env.REACT_APP_API}/user/${isAuth()._id}`,
