@@ -2,12 +2,30 @@ import { makeStyles } from "tss-react/mui";
 
 const useStyles = makeStyles()(() => {
 	return {
+		App: {
+			display: "flex",
+			justifyContent: "center",
+			alignItems: "center",
+			height: "100vh",
+			width: "100vw",
+		},
+
 		container: {
 			display: "flex",
 			flexDirection: "column",
 			justifyContent: "center",
 			alignItems: "center",
 			height: "100vh",
+		},
+		appCard: {
+			backgroundColor: "rgba(255, 255, 255, 0.2)",
+			display: "flex",
+			justifyContent: "center",
+			alignItems: "center",
+			flexDirection: "column",
+			gap: "20px",
+			padding: "2.5rem",
+			backdropFilter: "blur(10px)",
 		},
 		card: {
 			display: "flex",
@@ -40,6 +58,14 @@ const useStyles = makeStyles()(() => {
 			padding: "10px",
 			fontWeight: "bold",
 			color: "#24140f",
+		},
+		btn: {
+			color: "#000",
+			border: "2px solid #000",
+			borderRadius: "0",
+			marginTop: "1.5rem",
+			fontSize: "1.2rem",
+			textAlign: "center",
 		},
 		registerBtn: {
 			backgroundColor: "#902a1a",
