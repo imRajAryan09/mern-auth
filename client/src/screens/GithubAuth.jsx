@@ -20,6 +20,7 @@ const GithubAuth = () => {
 					borderRadius: "0",
 					marginTop: "1rem",
 					fontSize: "1rem",
+					width: "100%",
 				}}
 				// onClick={}
 			>

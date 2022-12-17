@@ -51,6 +51,7 @@ const GoogleAuth = ({ informParent = (f) => f }) => {
 							borderRadius: "0",
 							marginTop: "1.5rem",
 							fontSize: "1rem",
+							width: "100%",
 						}}
 					>
 						Sign In with Google
