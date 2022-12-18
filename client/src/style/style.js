@@ -83,7 +83,7 @@ const useStyles = makeStyles()((theme) => {
 			fontWeight: "bold",
 			color: "#24140f",
 			[theme.breakpoints.down("md")]: {
-				fontSize: "1rem",
+				fontSize: "2rem",
 			},
 		},
 		appBtn: {
