@@ -70,7 +70,7 @@ const Login = () => {
 					</Typography>
 					<GoogleAuth informParent={informParent} />
 					<GithubAuth />
-					<Divider>OR</Divider>
+					<Divider role='presentation'>OR</Divider>
 					<TextField
 						label='Email'
 						variant='outlined'
@@ -105,6 +105,20 @@ const Login = () => {
 						onClick={() => navigate("/auth/password/forget")}
 					>
 						Forgot Password?
+					</Typography>
+					<Typography
+						style={{
+							textAlign: "center",
+							marginTop: "1rem",
+						}}
+					>
+						Don't have an account?{" "}
+						<span
+							onClick={() => navigate("/register")}
+							style={{ textDecoration: "underline", cursor: "pointer" }}
+						>
+							Register
+						</span>
 					</Typography>
 				</FormGroup>
 			</Card>

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import Layout from "../components/Layout";
 import useStyles from "../style/style";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
 	const [formData, setFormData] = useState({
@@ -12,6 +13,7 @@ const Register = () => {
 		password: "",
 		confirmPassword: "",
 	});
+	const navigate = useNavigate();
 	const { name, email, password, confirmPassword } = formData;
 	const handleChange = (name) => (event) => {
 		setFormData({ ...formData, [name]: event.target.value });
@@ -89,6 +91,19 @@ const Register = () => {
 					>
 						Register
 					</Button>
+					<Typography
+						style={{
+							textAlign: "center",
+						}}
+					>
+						Already have an account?{" "}
+						<span
+							onClick={() => navigate("/login")}
+							style={{ textDecoration: "underline", cursor: "pointer" }}
+						>
+							Sign In
+						</span>
+					</Typography>
 				</FormGroup>
 			</Card>
 		</Layout>

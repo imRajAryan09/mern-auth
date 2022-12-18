@@ -1,6 +1,6 @@
 import { makeStyles } from "tss-react/mui";
 
-const useStyles = makeStyles()(() => {
+const useStyles = makeStyles()((theme) => {
 	return {
 		App: {
 			display: "flex",
@@ -9,7 +9,6 @@ const useStyles = makeStyles()(() => {
 			height: "100vh",
 			width: "100vw",
 		},
-
 		container: {
 			display: "flex",
 			flexDirection: "column",
@@ -26,6 +25,25 @@ const useStyles = makeStyles()(() => {
 			gap: "20px",
 			padding: "2.5rem",
 			backdropFilter: "blur(10px)",
+			[theme.breakpoints.down("md")]: {
+				padding: "1.5rem",
+			},
+		},
+		appText: {
+			textAlign: "center",
+			fontWeight: "bold",
+			lineHeight: "1",
+			[theme.breakpoints.down("md")]: {
+				fontSize: "2rem",
+			},
+		},
+		appSubText: {
+			textAlign: "center",
+			lineHeight: "1.1",
+			[theme.breakpoints.down("md")]: {
+				fontSize: "1.2rem",
+				lineHeight: "1",
+			},
 		},
 		card: {
 			display: "flex",
@@ -33,6 +51,9 @@ const useStyles = makeStyles()(() => {
 			justifyContent: "center",
 			alignItems: "center",
 			padding: "40px",
+			[theme.breakpoints.down("md")]: {
+				padding: "20px",
+			},
 			backgroundColor: "rgba(255, 255, 255, 0.5)",
 			boxShadow: "0",
 			backdropFilter: "blur(10px)",
@@ -40,6 +61,9 @@ const useStyles = makeStyles()(() => {
 			"& .MuiTextField-root": {
 				margin: "16px",
 				width: "400px",
+				[theme.breakpoints.down("md")]: {
+					width: "250px",
+				},
 			},
 			"& .MuiButtonBase-root": {
 				margin: "16px",
@@ -58,14 +82,19 @@ const useStyles = makeStyles()(() => {
 			padding: "10px",
 			fontWeight: "bold",
 			color: "#24140f",
+			[theme.breakpoints.down("md")]: {
+				fontSize: "1rem",
+			},
 		},
-		btn: {
-			color: "#000",
-			border: "2px solid #000",
-			borderRadius: "0",
-			marginTop: "1.5rem",
+		appBtn: {
 			fontSize: "1.2rem",
-			textAlign: "center",
+			[theme.breakpoints.down("md")]: {
+				fontSize: ".8rem",
+				marginTop: "1rem",
+			},
+			"&:hover": {
+				scale:1.1
+			}
 		},
 		registerBtn: {
 			backgroundColor: "#902a1a",

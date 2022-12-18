@@ -18,33 +18,24 @@ function App() {
 				<Box maxWidth='xl' component={"div"} className={classes.appCard}>
 					{isAuth() ? (
 						<>
-							<Typography
-								variant='h2'
-								style={{
-									textAlign: "center",
-									fontWeight: "bold",
-									lineHeight: "1",
-								}}
-							>
+							<Typography variant='h2' className={classes.appText}>
 								Welcome <span>{isAuth().name}</span>
 							</Typography>
-							<Typography
-								textAlign='center'
-								variant='h5'
-								style={{ lineHeight: "1.1" }}
-							>
+							<Typography variant='h5' className={classes.appSubText}>
 								You have been logged in by the reverence of the almighty God
 								Jesus Christ our lord and saviour
 							</Typography>
 							<Stack spacing={10} direction='row'>
 								<Button
 									variant='outlined'
+									className={classes.appBtn}
 									style={{
 										color: "#000",
 										border: "2px solid #000",
 										borderRadius: "0",
 										marginTop: "1.5rem",
 										fontSize: "1.2rem",
+										textAlign: "center",
 									}}
 									onClick={handlePrivilege}
 								>
@@ -52,12 +43,14 @@ function App() {
 								</Button>
 								<Button
 									variant='outlined'
+									className={classes.appBtn}
 									style={{
 										color: "#000",
 										border: "2px solid #000",
 										borderRadius: "0",
 										marginTop: "1.5rem",
 										fontSize: "1.2rem",
+										textAlign: "center",
 									}}
 									onClick={() => {
 										signOut(() => {
@@ -71,32 +64,22 @@ function App() {
 						</>
 					) : (
 						<>
-							<Typography
-								variant='h2'
-								style={{
-									textAlign: "center",
-									fontWeight: "bold",
-									lineHeight: "1",
-								}}
-							>
+							<Typography variant='h2' className={classes.appText}>
 								Welcome to Mern Auth
 							</Typography>
-							<Typography
-								textAlign='center'
-								variant='h5'
-								style={{ lineHeight: "1.1" }}
-							>
+							<Typography variant='h5' className={classes.appSubText}>
 								A one-stop solution for all your authentication needs
 							</Typography>
-							<Stack spacing={10} direction='row'>
+							<Stack spacing={{ xs: 5, sm: 5, md: 10, lg: 10 }} direction='row'>
 								<Button
 									variant='outlined'
+									className={classes.appBtn}
 									style={{
 										color: "#000",
 										border: "2px solid #000",
 										borderRadius: "0",
 										marginTop: "1.5rem",
-										fontSize: "1.2rem",
+										textAlign: "center",
 									}}
 									onClick={() => navigate("/login")}
 								>
@@ -104,12 +87,13 @@ function App() {
 								</Button>
 								<Button
 									variant='outlined'
+									className={classes.appBtn}
 									style={{
 										color: "#000",
 										border: "2px solid #000",
 										borderRadius: "0",
 										marginTop: "1.5rem",
-										fontSize: "1.2rem",
+										textAlign: "center",
 									}}
 									onClick={() => navigate("/register")}
 								>
