@@ -14,12 +14,14 @@ import { useNavigate } from "react-router-dom";
 import Layout from "../components/Layout";
 import { GoogleAuth, GithubAuth } from "./exportScreens";
 import useStyles from "../style/style";
+import CircularLoading from "../components/CircularLoading";
 
 const Login = () => {
 	const [formData, setFormData] = useState({
 		email: "",
 		password: "",
 	});
+	const [loading, setLoading] = useState(false);
 	const navigate = useNavigate();
 	const { email, password } = formData;
 	const handleChange = (name) => (event) => {
@@ -27,6 +29,7 @@ const Login = () => {
 	};
 	const handleSubmit = (event) => {
 		event.preventDefault();
+		setLoading(true);
 		axios({
 			method: "POST",
 			url: `${process.env.REACT_APP_API}/auth/login`,
@@ -40,11 +43,13 @@ const Login = () => {
 						email: "",
 						password: "",
 					});
+					setLoading(false);
 					toast.success(response.data.message);
 				});
 			})
 			.catch((error) => {
 				console.log("SIGNIN ERROR", error.response.data);
+				setLoading(false);
 				toast.error(error.response.data.error);
 			});
 	};
@@ -57,6 +62,7 @@ const Login = () => {
 	const { classes } = useStyles();
 	return (
 		<Layout>
+			{loading ? <CircularLoading /> : null}
 			<ToastContainer />
 			<Card className={classes.card}>
 				{useEffect(() => {
@@ -101,6 +107,7 @@ const Login = () => {
 							textAlign: "center",
 							textDecoration: "underline",
 							cursor: "pointer",
+							marginTop: "1rem",
 						}}
 						onClick={() => navigate("/auth/password/forget")}
 					>
@@ -117,7 +124,7 @@ const Login = () => {
 							onClick={() => navigate("/register")}
 							style={{ textDecoration: "underline", cursor: "pointer" }}
 						>
-							Register
+							Register Now
 						</span>
 					</Typography>
 				</FormGroup>

@@ -5,6 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 import Layout from "../components/Layout";
 import useStyles from "../style/style";
 import { useNavigate } from "react-router-dom";
+import CircularLoading from "../components/CircularLoading";
 
 const Register = () => {
 	const [formData, setFormData] = useState({
@@ -13,6 +14,7 @@ const Register = () => {
 		password: "",
 		confirmPassword: "",
 	});
+	const [loading, setLoading] = useState(false);
 	const navigate = useNavigate();
 	const { name, email, password, confirmPassword } = formData;
 	const handleChange = (name) => (event) => {
@@ -20,30 +22,38 @@ const Register = () => {
 	};
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		axios({
-			method: "POST",
-			url: `${process.env.REACT_APP_API}/auth/register`,
-			data: { name, email, password },
-		})
-			.then((response) => {
-				console.log("SIGNUP SUCCESS", response);
-				setFormData({
-					...formData,
-					name: "",
-					email: "",
-					password: "",
-					confirmPassword: "",
-				});
-				toast.success(response.data.message);
+		if (password !== confirmPassword) {
+			toast.error("Passwords do not match");
+		} else {
+			setLoading(true);
+			axios({
+				method: "POST",
+				url: `${process.env.REACT_APP_API}/auth/register`,
+				data: { name, email, password },
 			})
-			.catch((error) => {
-				console.log("SIGNUP ERROR", error.response.data);
-				toast.error(error.response.data.error);
-			});
+				.then((response) => {
+					console.log("SIGNUP SUCCESS", response);
+					setFormData({
+						...formData,
+						name: "",
+						email: "",
+						password: "",
+						confirmPassword: "",
+					});
+					setLoading(false);
+					toast.success(response.data.message);
+				})
+				.catch((error) => {
+					console.log("SIGNUP ERROR", error.response.data);
+					setLoading(false);
+					toast.error(error.response.data.error);
+				});
+		}
 	};
 	const { classes } = useStyles();
 	return (
 		<Layout>
+			{loading ? <CircularLoading /> : null}
 			<ToastContainer />
 			<Card className={classes.card}>
 				<FormGroup>
@@ -94,6 +104,7 @@ const Register = () => {
 					<Typography
 						style={{
 							textAlign: "center",
+							marginTop: "1rem",
 						}}
 					>
 						Already have an account?{" "}

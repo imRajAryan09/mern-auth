@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import Layout from "../components/Layout";
 import useStyles from "../style/style";
+import CircularLoading from "../components/CircularLoading";
 
 const ResetPassword = () => {
 	const { token } = useParams();
@@ -12,35 +13,44 @@ const ResetPassword = () => {
 		password: "",
 		confirmPassword: "",
 	});
+	const [loading, setLoading] = useState(false);
 	const { password, confirmPassword } = formData;
 	const handleChange = (name) => (event) => {
 		setFormData({ ...formData, [name]: event.target.value });
 	};
 	const handleSubmit = (event) => {
-		console.log(password);
+		// console.log(password);
 		event.preventDefault();
-		axios({
-			method: "PUT",
-			url: `${process.env.REACT_APP_API}/auth/password/reset`,
-			data: { newPassword: password, resetPasswordLink: token },
-		})
-			.then((response) => {
-				console.log("RESET PASSWORD SUCCESS", response);
-				setFormData({
-					...formData,
-					password: "",
-					confirmPassword: "",
-				});
-				toast.success(response.data.message);
+		if (password !== confirmPassword) {
+			toast.error("Passwords do not match");
+		} else {
+			setLoading(true);
+			axios({
+				method: "PUT",
+				url: `${process.env.REACT_APP_API}/auth/password/reset`,
+				data: { newPassword: password, resetPasswordLink: token },
 			})
-			.catch((error) => {
-				console.log("RESET PASSWORD ERROR", error.response.data);
-				toast.error(error.response.data.error);
-			});
+				.then((response) => {
+					console.log("RESET PASSWORD SUCCESS", response);
+					setFormData({
+						...formData,
+						password: "",
+						confirmPassword: "",
+					});
+					setLoading(false);
+					toast.success(response.data.message);
+				})
+				.catch((error) => {
+					console.log("RESET PASSWORD ERROR", error.response.data);
+					setLoading(false);
+					toast.error(error.response.data.error);
+				});
+		}
 	};
 	const { classes } = useStyles();
 	return (
 		<Layout>
+			{loading ? <CircularLoading /> : null}
 			<ToastContainer />
 			<Card className={classes.card}>
 				<FormGroup>

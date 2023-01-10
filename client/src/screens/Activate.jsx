@@ -5,6 +5,8 @@ import { toast, ToastContainer } from "react-toastify";
 import Layout from "../components/Layout";
 import { Button, Card, FormGroup, Typography } from "@mui/material";
 import useStyles from "../style/style";
+import { useState } from "react";
+import CircularLoading from "../components/CircularLoading";
 
 const Activate = () => {
 	let name = "User";
@@ -14,8 +16,10 @@ const Activate = () => {
 		name = decodedToken.name;
 	}
 	// console.log(decodedToken);
+	const [loading, setLoading] = useState(false);
 	const handleSubmit = (event) => {
 		event.preventDefault();
+		setLoading(true);
 		axios({
 			method: "POST",
 			url: `${process.env.REACT_APP_API}/auth/activation`,
@@ -23,16 +27,19 @@ const Activate = () => {
 		})
 			.then((response) => {
 				console.log("ACTIVATION SUCCESS", response);
+				setLoading(false);
 				toast.success(response.data.message);
 			})
 			.catch((error) => {
 				console.log("ACTIVATION ERROR", error.response.data.error);
+				setLoading(false);
 				toast.error(error.response.data.error);
 			});
 	};
 	const { classes } = useStyles();
 	return (
 		<Layout>
+			{loading ? <CircularLoading /> : null}
 			<ToastContainer />
 			<Card className={classes.card}>
 				<FormGroup>

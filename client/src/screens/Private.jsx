@@ -6,6 +6,7 @@ import { toast, ToastContainer } from "react-toastify";
 import Layout from "../components/Layout";
 import { getCookie, isAuth, updateUser } from "../utils/helper";
 import useStyles from "../style/style";
+import CircularLoading from "../components/CircularLoading";
 
 const Private = () => {
 	const [formData, setFormData] = useState({
@@ -14,10 +15,12 @@ const Private = () => {
 		password: "",
 		role: "",
 	});
+	const [loading, setLoading] = useState(false);
 	const navigate = useNavigate();
 	const loadProfile = () => {
+		setLoading(true);
 		const token = getCookie("token");
-		console.log(isAuth());
+		// console.log(isAuth());
 		axios({
 			method: "GET",
 			url: `${process.env.REACT_APP_API}/user/${isAuth()._id}`,
@@ -27,11 +30,13 @@ const Private = () => {
 		})
 			.then((response) => {
 				console.log("PRIVATE PROFILE UPDATE", response);
+				setLoading(false);
 				const { name, email, role } = response.data;
 				setFormData({ ...formData, name, email, role });
 			})
 			.catch((error) => {
 				console.log("PRIVATE PROFILE UPDATE ERROR", error.response.data.error);
+				setLoading(false);
 				if (error.response.status === 401) {
 					toast.error(error.response.data.error);
 					navigate("/login");
@@ -47,8 +52,9 @@ const Private = () => {
 		setFormData({ ...formData, [name]: event.target.value });
 	};
 	const handleSubmit = (event) => {
-		const token = getCookie("token");
 		event.preventDefault();
+		const token = getCookie("token");
+		setLoading(true);
 		axios({
 			method: "PUT",
 			url: `${process.env.REACT_APP_API}/user/update`,
@@ -61,11 +67,13 @@ const Private = () => {
 				console.log("PRIVATE USER UPDATE SUCCESS", response);
 				updateUser(response, () => {
 					setFormData({ ...formData, password: "" });
+					setLoading(false);
 					toast.success("Profile Updated Successfully");
 				});
 			})
 			.then(navigate("/"))
 			.catch((error) => {
+				setLoading(false);
 				console.log("PRIVATE USER UPDATE ERROR", error.response);
 				// toast.error(error.response);
 			});
@@ -73,6 +81,7 @@ const Private = () => {
 	const { classes } = useStyles();
 	return (
 		<Layout>
+			{loading ? <CircularLoading /> : null}
 			<ToastContainer />
 			<Card className={classes.card}>
 				<FormGroup>
